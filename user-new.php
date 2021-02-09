@@ -29,9 +29,20 @@ require_once "includes/funcoes.php";
 
                 if($senha1===$senha2){
 
-                    echo msg_sucesso("Pronto para salvar os dados!");
+                    if( empty($nome) || empty($usuario) || empty($senha1) || empty($senha2) || empty($tipo)){
+                        echo msg_erro("Todos os dados são obrigatórios!");
+                    }else{
+                        $senha = gerarHash($senha1);
+                        $q = "insert into usuarios (usuario, nome, senha, tipo) values ('$usuario','$nome', '$senha', '$tipo' )";
+                        $user_new = $banco->query($q);
+                        if($user_new == 1){
+                            echo msg_sucesso("Usuário $nome adicionado com Sucesso!");
+                        }else{
+                            echo msg_erro("Erro ao adicionar usuário $nome, Tente novamente!");
+                        }
+                    }
                 }else{
-                    echo msg_erro("Senhas não conferem");
+                    echo msg_erro(" Senhas não conferem");
                 }
             }
 
