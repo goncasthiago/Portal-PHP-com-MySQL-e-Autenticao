@@ -6,7 +6,7 @@ if (empty($_SESSION['user'])){
 
 }else{
     echo "Olá <strong>" . $_SESSION['nome'] . "</strong> | ";
-    echo "<a href='user-dados.php'>Meus Dados</a> | ";
+    echo "<a href='user-edit.php'>Meus Dados</a> | ";
     if (is_admin()){
         echo "<a href='user-new.php'>Novo Usuário</a> | ";
         echo "<a href='user-dados.php'>Novo Jogo</a> | ";
